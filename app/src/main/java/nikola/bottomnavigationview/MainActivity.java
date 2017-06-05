@@ -1,7 +1,9 @@
 package nikola.bottomnavigationview;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
@@ -19,10 +21,11 @@ import nikola.bottomnavigationview.Fragments.MovieFragment;
 import nikola.bottomnavigationview.Fragments.TheaterFragment;
 import nikola.bottomnavigationview.Fragments.ThirdFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     private Fragment fragment;
     private Button set_button;
+    public static String punoIme;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -51,6 +54,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        preferences.registerOnSharedPreferenceChangeListener(this);
+        punoIme = preferences.getString("full_name", null);
+
+        Toast.makeText(this, punoIme, Toast.LENGTH_SHORT).show();
+
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
@@ -70,5 +79,10 @@ public class MainActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        punoIme = sharedPreferences.getString("full_name", null);
     }
 }

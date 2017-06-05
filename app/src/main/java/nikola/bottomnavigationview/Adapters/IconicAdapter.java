@@ -83,6 +83,8 @@ public class IconicAdapter extends RecyclerView.Adapter<IconicAdapter.RowHolder>
                     Intent movieIntent = new Intent(context, AboutMovie.class);
                     movieIntent.putExtra("Title", title.getText());
                     movieIntent.putExtra("IdFilma", videoId.getText());
+                    movieIntent.putExtra("DescFilma", desc.getText());
+                    movieIntent.putExtra("Rating", rate.getText());
                     context.startActivity(movieIntent);
                 }
             });

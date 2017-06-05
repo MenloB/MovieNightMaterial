@@ -1,19 +1,181 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<!-- Nije Preporucljivo ali radi... -->
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!--<TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/dummyCont"
-        android:text="Hello World"/>-->
-
-
-    <com.google.android.youtube.player.YouTubePlayerView
-        android:id="@+id/youtube_view"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent">
+
+        <com.google.android.youtube.player.YouTubePlayerView
+            android:id="@+id/youtube_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/title_movie"
+            android:layout_margin="20dp"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/desc_movie"
+            android:layout_margin="20dp"/>
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:id="@+id/counters"
+            android:gravity="center">
+
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:orientation="vertical">
+
+                <nikola.bottomnavigationview.CustomControls.CustomCircleBar
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    app:progressColor="@color/colorAccent"
+                    app:progressBarThickness="4dp"
+                    android:id="@+id/rateBar1" />
+
+                <TextView
+                    android:layout_width="51dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/avgrating"
+                    android:scrollHorizontally="false"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="50dp">
+
+                <nikola.bottomnavigationview.CustomControls.CustomCircleBar
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    app:progressColor="@color/colorAccent"
+                    app:progressBarThickness="4dp"
+                    android:id="@+id/rateBar2" />
+
+                <TextView
+                    android:layout_width="51dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/votecount"
+                    android:scrollHorizontally="false"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="50dp">
+
+                <nikola.bottomnavigationview.CustomControls.CustomCircleBar
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    app:progressColor="@color/colorAccent"
+                    app:progressBarThickness="4dp"
+                    android:id="@+id/rateBar3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/popularity"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/movieButtons"
+            android:gravity="center"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:minWidth="64dp"
+                android:layout_width="100dp"
+                android:layout_height="36dp"
+                android:text="Rezervacije"
+                android:background="@color/white"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:textColor="@color/colorAccent"
+                android:layout_marginRight="10dp"
+                android:id="@+id/rezervisi"/>
+
+            <ImageButton
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/ic_star_half_black_24dp"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/dodajUFavorite"/>
+
+        </LinearLayout>
 
 
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:id="@+id/rezervisiLayout"
+            android:orientation="vertical">
+
+            <Spinner
+                android:layout_width="fill_parent"
+                android:layout_height="30dp"
+                android:id="@+id/bioskopi" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/radioGroup">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/radio17h"
+                    android:text="17h"
+                    android:onClick="onRadioButtonChecked"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/radio20h"
+                    android:text="20h"
+                    android:onClick="onRadioButtonChecked" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/radio22h"
+                    android:text="22h"
+                    android:onClick="onRadioButtonChecked"/>
+
+            </RadioGroup>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rezervisiBtn"
+                android:text="Rezervisi"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>
